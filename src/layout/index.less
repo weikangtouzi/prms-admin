@@ -1,0 +1,102 @@
+@import "/src/assets/styles/variable";
+
+.layout {
+  .header {
+    background: @green-bg;
+    height: 45px;
+    display: flex;
+
+    .logo {
+      width: 148px;
+      height: 100%;
+      background: aquamarine;
+    }
+
+    .menu {
+      flex: 1;
+    }
+
+    .right {
+      min-width: 220px;
+      float: right;
+      text-align: right;
+      padding-right: 20px;
+
+      > span {
+        display: inline-block;
+        height: @header-height;
+        line-height: @header-height;
+        padding: 0 7px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+
+  }
+
+  :global {
+    .ant-menu {
+      background: transparent;
+    }
+
+    .ant-menu-item {
+      color: #efeeee;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .ant-menu-item-selected {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: white !important;
+
+      &:after {
+        display: none !important;
+      }
+    }
+
+    .ant-menu-horizontal {
+      border-bottom: none;
+    }
+
+    .ant-menu-vertical {
+      border-right: none;
+      .ant-menu-item {
+        font-size: 12px;
+      }
+    }
+
+    .ant-menu-item-active {
+      background: rgba(255, 255, 255, 0.2);
+      color: white !important;
+
+      &:after {
+        display: none !important;
+      }
+    }
+
+  }
+
+  .content {
+    height: calc(100vh - 45px);
+    position: relative;
+
+    .submenu {
+      background: @green-bg;
+    }
+    .contentLayout{
+      position: relative;
+      overflow-y: auto;
+      background: white;
+      margin: 12px;
+      border-radius: 3px;
+    }
+    .container{
+      position: absolute;
+      padding: 2px 20px 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+  }
+}

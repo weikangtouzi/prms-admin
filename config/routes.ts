@@ -31,6 +31,12 @@
     ],
   },
   {
+    path: '/workspace',
+    name: 'workspace',
+    icon: 'dashboard',
+    component: './workspace/index'
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     icon: 'dashboard',

@@ -1,8 +1,6 @@
 import { Card, Radio, Typography } from 'antd';
 import styles from '../index.less';
 import { Line } from '@ant-design/charts';
-import numeral from 'numeral';
-import type { DonutConfig } from '@ant-design/charts/es/donut';
 import { useState } from 'react';
 
 type SalesType = 'online' | 'stores';

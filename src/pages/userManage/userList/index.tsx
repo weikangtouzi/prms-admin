@@ -25,9 +25,9 @@ const tabList = [
     key: 'applications',
     tab: '顾问用户',
     disabled: true,
-  }
+  },
 ];
-const UserList: FC<TabsProps> = (props)=>{
+const UserList: FC<TabsProps> = (props) => {
   const handleTabChange = (key: string) => {
     const { match } = props;
     const url = match.url === '/' ? '' : match.url;
@@ -52,14 +52,16 @@ const UserList: FC<TabsProps> = (props)=>{
     }
     return 'jobHunter';
   };
-  return <PageContainer
-    header={{title:''}}
-    tabList={tabList}
-    tabActiveKey={getTabKey()}
-    onTabChange={handleTabChange}
-  >
-    {props.children}
-  </PageContainer>
-}
+  return (
+    <PageContainer
+      header={{ title: '' }}
+      tabList={tabList}
+      tabActiveKey={getTabKey()}
+      onTabChange={handleTabChange}
+    >
+      {props.children}
+    </PageContainer>
+  );
+};
 
 export default UserList;

@@ -34,7 +34,7 @@
     path: '/workspace',
     name: 'workspace',
     icon: 'dashboard',
-    component: './workspace/index'
+    component: './workspace/index',
   },
   {
     path: '/userManage',
@@ -50,35 +50,58 @@
         icon: 'smile',
         path: '/userManage/userList',
         component: './userManage/userList',
-        routes:[
+        routes: [
           {
             name: 'userList',
             path: '/userManage/userList',
             icon: 'smile',
-            hideInMenu:true,
-            redirect:'/userManage/userList/jobHunter'
+            hideInMenu: true,
+            redirect: '/userManage/userList/jobHunter',
           },
           {
             name: 'jobHunter',
             icon: 'smile',
-            hideInMenu:true,
+            hideInMenu: true,
             path: '/userManage/userList/jobHunter',
             component: './userManage/userList/jobHunter',
           },
           {
             name: 'recruiter',
             icon: 'smile',
-            hideInMenu:true,
+            hideInMenu: true,
             path: '/userManage/userList/recruiter',
             component: './userManage/userList/recruiter',
           },
-        ]
+        ],
       },
       {
         name: 'enterpriseList',
         icon: 'smile',
         path: '/userManage/enterpriseList',
         component: './userManage/enterpriseList',
+        routes: [
+          {
+            name: 'companyList',
+            path: '/userManage/enterpriseList',
+            icon: 'smile',
+            hideInMenu: true,
+            redirect: '/userManage/enterpriseList/companyList',
+          },
+          {
+            name: 'companyList',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/enterpriseList/companyList',
+            component: './userManage/enterpriseList/companyList',
+          },
+          {
+            name: 'companyAudit',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/enterpriseList/companyAudit',
+            component: './userManage/enterpriseList/companyAudit',
+          },
+        ],
       },
       {
         name: 'role',
@@ -92,7 +115,7 @@
         path: '/userManage/userLog',
         component: './userManage/userLog',
       },
-    ]
+    ],
   },
   {
     path: '/employmentManage',
@@ -120,8 +143,8 @@
         icon: 'smile',
         path: '/employmentManage/jobFair',
         component: './employmentManage/jobFair',
-      }
-    ]
+      },
+    ],
   },
   {
     path: '/contentManage',
@@ -149,8 +172,8 @@
         icon: 'smile',
         path: '/contentManage/sensitiveWord',
         component: './contentManage/sensitiveWord',
-      }
-    ]
+      },
+    ],
   },
   {
     path: '/operationManage',
@@ -196,8 +219,8 @@
         icon: 'smile',
         path: '/operationManage/feedbackAndHelp',
         component: './operationManage/feedbackAndHelp',
-      }
-    ]
+      },
+    ],
   },
   {
     path: '/systemConfig',
@@ -226,7 +249,7 @@
         path: '/systemConfig/consume',
         component: './systemConfig/consume',
       },
-    ]
+    ],
   },
   {
     path: '/',
@@ -235,4 +258,4 @@
   {
     component: '404',
   },
-]
+];

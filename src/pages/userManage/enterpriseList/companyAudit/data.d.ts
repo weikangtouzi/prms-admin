@@ -1,15 +1,14 @@
-export type UserType = {
-  userId: string;
-  userName: string;
-  phoneNumber: number;
-  nickName: string;
-  type: number;
-  city: string;
+export type CompanyType = {
+  companyId: string;
   companyName: string;
-  registerTime: string;
+  adminAccount: string | number;
+  vipLevel: number;
+  logo: string;
+  wantCity: any;
+  lastLoginTime: string;
   status: number;
-};
-
-export type UserFilter = {
-  city?: any;
+  jobNum: number;
+  city: string,
+  checkStatus?: number
+  serviceAccount: string
 };

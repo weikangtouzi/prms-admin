@@ -1,20 +1,20 @@
 import { request } from '@@/plugin-request/request';
-import type { UserType } from '@/pages/userManage/userList/jobHunter/data';
+import type { CompanyType } from '@/pages/userManage/enterpriseList/companyList/data';
 
-export async function userList(params: {
+export async function companyAuditList(params: {
   // query
   /** 当前的页码 */
   current?: number;
   /** 页面的容量 */
   pageSize?: number;
-  city?: string | number;
+  type?: string | number;
 }) {
   return request<{
-    data: UserType[];
+    data: CompanyType[];
     /** 列表的内容总数 */
     total?: number;
     success?: boolean;
-  }>('/api/userList', {
+  }>('/api/companyAuditList', {
     method: 'GET',
     params: {
       ...params,

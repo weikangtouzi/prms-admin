@@ -6,6 +6,7 @@ export type CompanyType = {
   logo: string;
   wantCity: any;
   lastLoginTime: string;
+  checkStatus?: number;
   status: number;
   jobNum: number;
   city: string,

@@ -230,7 +230,7 @@
   },
   {
     path: '/',
-    redirect: '/dashboard/analysis',
+    redirect: '/userManage/userList',
   },
   {
     component: '404',

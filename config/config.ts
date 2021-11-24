@@ -11,6 +11,9 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
+  history:{
+    type:'hash'
+  },
   layout: {
     locale: true,
     siderWidth: 208,
@@ -31,8 +34,6 @@ export default defineConfig({
   theme: {
     'primary-color': defaultSettings.primaryColor,
   },
-  // esbuild is father build tools
-  // https://umijs.org/plugins/plugin-esbuild
   esbuild: {},
   title: false,
   ignoreMomentLocale: true,

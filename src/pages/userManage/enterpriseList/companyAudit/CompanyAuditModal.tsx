@@ -6,7 +6,7 @@ import {
 } from '@ant-design/pro-form';
 import { Avatar, Form, List,Image } from 'antd';
 import type { CompanyType } from './data.d';
-import styles from '../style.less';
+import styles from '@/common/css/style.less';
 
 
 type CompanyAuditModal = {

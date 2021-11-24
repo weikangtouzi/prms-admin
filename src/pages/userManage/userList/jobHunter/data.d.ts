@@ -7,6 +7,7 @@ export type UserType = {
   city: string;
   companyName: string;
   registerTime: string;
+  unRegisterTime: string;
   status: number;
 };
 

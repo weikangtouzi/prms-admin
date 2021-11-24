@@ -14,7 +14,11 @@ export default {
   'menu.userManage.enterpriseList.companyList': '企业列表',
   'menu.userManage.enterpriseList.companyAudit': '企业审核',
   'menu.userManage.role': '角色管理',
+  'menu.userManage.role.admin': '管理员',
+  'menu.userManage.role.auth': '角色权限',
   'menu.userManage.userLog': '用户日志',
+  'menu.userManage.userLog.actionLog': '操作日志',
+  'menu.userManage.userLog.userUnRegister': '操作日志',
   // 招聘管理
   'menu.employmentManage': '招聘管理',
   'menu.employmentManage.resume': '简历管理',

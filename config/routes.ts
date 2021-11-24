@@ -108,12 +108,58 @@
         icon: 'smile',
         path: '/userManage/role',
         component: './userManage/role',
+        routes: [
+          {
+            name: 'admin',
+            path: '/userManage/role',
+            icon: 'smile',
+            hideInMenu: true,
+            redirect: '/userManage/role/admin',
+          },
+          {
+            name: 'admin',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/role/admin',
+            component: './userManage/role/admin',
+          },
+          {
+            name: 'auth',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/role/auth',
+            component: './userManage/role/auth',
+          }
+        ],
       },
       {
         name: 'userLog',
         icon: 'smile',
         path: '/userManage/userLog',
         component: './userManage/userLog',
+        routes: [
+          {
+            name: 'actionLog',
+            path: '/userManage/userLog',
+            icon: 'smile',
+            hideInMenu: true,
+            redirect: '/userManage/userLog/actionLog',
+          },
+          {
+            name: 'actionLog',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/userLog/actionLog',
+            component: './userManage/userLog/actionLog',
+          },
+          {
+            name: 'userUnRegister',
+            icon: 'smile',
+            hideInMenu: true,
+            path: '/userManage/userLog/userUnRegister',
+            component: './userManage/userLog/userUnRegister',
+          }
+        ],
       },
     ],
   },

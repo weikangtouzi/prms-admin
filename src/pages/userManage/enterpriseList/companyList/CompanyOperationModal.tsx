@@ -4,7 +4,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-form';
 import type { CompanyType } from './data.d';
-import styles from '../style.less';
+import styles from '@/common/css/style.less';
 
 type OperationModalProps = {
   done: boolean;

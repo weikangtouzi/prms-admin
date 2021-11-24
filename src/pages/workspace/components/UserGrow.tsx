@@ -19,44 +19,45 @@ const data = [
 ];
 const UserGrow = () => {
   const [salesType] = useState<SalesType>('online');
-  return <Card
-    className={styles.salesCard}
-    bordered={false}
-    title='用户增长'
-    style={{
-      height: '100%',
-    }}
-    extra={
-      <div className={styles.salesCardExtra}>
-        <div className={styles.salesTypeRadio}>
-          <Radio.Group value={salesType} onChange={() => {
-          }}>
-            <Radio.Button value='online'>本周</Radio.Button>
-            <Radio.Button value='stores'>本月</Radio.Button>
-          </Radio.Group>
+  return (
+    <Card
+      className={styles.salesCard}
+      bordered={false}
+      title="用户增长"
+      style={{
+        height: '100%',
+      }}
+      extra={
+        <div className={styles.salesCardExtra}>
+          <div className={styles.salesTypeRadio}>
+            <Radio.Group value={salesType} onChange={() => {}}>
+              <Radio.Button value="online">本周</Radio.Button>
+              <Radio.Button value="stores">本月</Radio.Button>
+            </Radio.Group>
+          </div>
         </div>
+      }
+    >
+      <div>
+        <Text>本月新用户数：2000人，本周新用户数：1000人</Text>
+        <Line
+          forceFit
+          height={320}
+          xField="year"
+          yField="value"
+          data={data}
+          meta={{
+            year: { alias: '年份' },
+            value: { alias: '人数' },
+          }}
+          point={{
+            size: 5,
+            shape: 'diamond',
+          }}
+        />
       </div>
-    }
-  >
-    <div>
-      <Text>本月新用户数：2000人，本周新用户数：1000人</Text>
-      <Line
-        forceFit
-        height={320}
-        xField='year'
-        yField='value'
-        data={data}
-        meta={{
-        year: { alias: '年份' },
-        value: { alias: '人数' },
-        }}
-        point={{
-          size: 5,
-          shape: 'diamond',
-        }}
-      />
-    </div>
-  </Card>;
+    </Card>
+  );
 };
 
 export default UserGrow;

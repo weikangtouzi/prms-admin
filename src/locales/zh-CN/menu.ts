@@ -11,6 +11,8 @@ export default {
   'menu.userManage.userList.jobHunter': '求职用户',
   'menu.userManage.userList.recruiter': '招聘用户',
   'menu.userManage.enterpriseList': '企业列表',
+  'menu.userManage.enterpriseList.companyList': '企业列表',
+  'menu.userManage.enterpriseList.companyAudit': '企业审核',
   'menu.userManage.role': '角色管理',
   'menu.userManage.userLog': '用户日志',
   // 招聘管理

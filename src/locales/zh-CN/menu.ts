@@ -22,6 +22,8 @@ export default {
   // 招聘管理
   'menu.employmentManage': '招聘管理',
   'menu.employmentManage.resume': '简历管理',
+  'menu.employmentManage.resume.resumeList': '简历列表',
+  'menu.employmentManage.resume.resumeSetting': '简历设置',
   'menu.employmentManage.title': '职位管理',
   'menu.employmentManage.jobFair': '招聘会管理',
   // 内容管理

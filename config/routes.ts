@@ -15,13 +15,11 @@
       },
       {
         name: 'register-result',
-        icon: 'smile',
         path: '/user/register-result',
         component: './user/register-result',
       },
       {
         name: 'register',
-        icon: 'smile',
         path: '/user/register',
         component: './user/register',
       },
@@ -47,27 +45,23 @@
       },
       {
         name: 'userList',
-        icon: 'smile',
         path: '/userManage/userList',
         component: './userManage/userList',
         routes: [
           {
             name: 'userList',
             path: '/userManage/userList',
-            icon: 'smile',
             hideInMenu: true,
             redirect: '/userManage/userList/jobHunter',
           },
           {
             name: 'jobHunter',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/userList/jobHunter',
             component: './userManage/userList/jobHunter',
           },
           {
             name: 'recruiter',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/userList/recruiter',
             component: './userManage/userList/recruiter',
@@ -76,27 +70,23 @@
       },
       {
         name: 'enterpriseList',
-        icon: 'smile',
         path: '/userManage/enterpriseList',
         component: './userManage/enterpriseList',
         routes: [
           {
             name: 'companyList',
             path: '/userManage/enterpriseList',
-            icon: 'smile',
             hideInMenu: true,
             redirect: '/userManage/enterpriseList/companyList',
           },
           {
             name: 'companyList',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/enterpriseList/companyList',
             component: './userManage/enterpriseList/companyList',
           },
           {
             name: 'companyAudit',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/enterpriseList/companyAudit',
             component: './userManage/enterpriseList/companyAudit',
@@ -105,27 +95,23 @@
       },
       {
         name: 'role',
-        icon: 'smile',
         path: '/userManage/role',
         component: './userManage/role',
         routes: [
           {
             name: 'admin',
             path: '/userManage/role',
-            icon: 'smile',
             hideInMenu: true,
             redirect: '/userManage/role/admin',
           },
           {
             name: 'admin',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/role/admin',
             component: './userManage/role/admin',
           },
           {
             name: 'auth',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/role/auth',
             component: './userManage/role/auth',
@@ -134,27 +120,23 @@
       },
       {
         name: 'userLog',
-        icon: 'smile',
         path: '/userManage/userLog',
         component: './userManage/userLog',
         routes: [
           {
             name: 'actionLog',
             path: '/userManage/userLog',
-            icon: 'smile',
             hideInMenu: true,
             redirect: '/userManage/userLog/actionLog',
           },
           {
             name: 'actionLog',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/userLog/actionLog',
             component: './userManage/userLog/actionLog',
           },
           {
             name: 'userUnRegister',
-            icon: 'smile',
             hideInMenu: true,
             path: '/userManage/userLog/userUnRegister',
             component: './userManage/userLog/userUnRegister',
@@ -174,19 +156,36 @@
       },
       {
         name: 'resume',
-        icon: 'smile',
         path: '/employmentManage/resume',
         component: './employmentManage/resume',
+        routes: [
+          {
+            name: 'resumeList',
+            hideInMenu: true,
+            path: '/employmentManage/resume',
+            redirect: '/employmentManage/resume/resumeList',
+          },
+          {
+            name: 'resumeList',
+            hideInMenu: true,
+            path: '/employmentManage/resume/resumeList',
+            component: './employmentManage/resume/resumeList',
+          },
+          {
+            name: 'resumeSetting',
+            hideInMenu: true,
+            path: '/employmentManage/resume/resumeSetting',
+            component: './employmentManage/resume/resumeSetting',
+          }
+        ]
       },
       {
         name: 'title',
-        icon: 'smile',
         path: '/employmentManage/title',
         component: './employmentManage/title',
       },
       {
         name: 'jobFair',
-        icon: 'smile',
         path: '/employmentManage/jobFair',
         component: './employmentManage/jobFair',
       },
@@ -203,19 +202,16 @@
       },
       {
         name: 'news',
-        icon: 'smile',
         path: '/contentManage/news',
         component: './contentManage/news',
       },
       {
         name: 'announcement',
-        icon: 'smile',
         path: '/contentManage/announcement',
         component: './contentManage/announcement',
       },
       {
         name: 'sensitiveWord',
-        icon: 'smile',
         path: '/contentManage/sensitiveWord',
         component: './contentManage/sensitiveWord',
       },
@@ -232,37 +228,31 @@
       },
       {
         name: 'finance',
-        icon: 'smile',
         path: '/operationManage/finance',
         component: './operationManage/finance',
       },
       {
         name: 'withdraw',
-        icon: 'smile',
         path: '/operationManage/withdraw',
         component: './operationManage/withdraw',
       },
       {
         name: 'invoice',
-        icon: 'smile',
         path: '/operationManage/invoice',
         component: './operationManage/invoice',
       },
       {
         name: 'ad',
-        icon: 'smile',
         path: '/operationManage/ad',
         component: './operationManage/ad',
       },
       {
         name: 'tipOff',
-        icon: 'smile',
         path: '/operationManage/tipOff',
         component: './operationManage/tipOff',
       },
       {
         name: 'feedbackAndHelp',
-        icon: 'smile',
         path: '/operationManage/feedbackAndHelp',
         component: './operationManage/feedbackAndHelp',
       },
@@ -279,19 +269,16 @@
       },
       {
         name: 'system',
-        icon: 'smile',
         path: '/systemConfig/system',
         component: './systemConfig/system',
       },
       {
         name: 'register',
-        icon: 'smile',
         path: '/systemConfig/register',
         component: './systemConfig/register',
       },
       {
         name: 'consume',
-        icon: 'smile',
         path: '/systemConfig/consume',
         component: './systemConfig/consume',
       },

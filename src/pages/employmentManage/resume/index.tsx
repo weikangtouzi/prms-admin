@@ -1,7 +1,8 @@
 import { PageContainer } from '@ant-design/pro-layout';
 import type { TabsProps } from '@/common/js/types';
 import type { FC } from 'react';
-import { history } from '@@/core/history';
+import { history } from 'umi';
+import { Button } from 'antd';
 const tabList = [
   {
     key: 'resumeList',
@@ -10,6 +11,12 @@ const tabList = [
   {
     key: 'resumeSetting',
     tab: '简历设置',
+  },
+];
+const tabList2 = [
+  {
+    key: 'resumeList/resumeRecord',
+    tab: '简历记录',
   },
 ];
 const Resume: FC<TabsProps> = (props) => {
@@ -40,13 +47,14 @@ const Resume: FC<TabsProps> = (props) => {
   return (
     <PageContainer
       header={{ title: '' }}
-      tabList={tabList}
+      tabList={props.location.pathname.replace(`${props.match.path}/`, '')==='resumeList/resumeRecord'?tabList2:tabList}
       tabActiveKey={getTabKey()}
       onTabChange={handleTabChange}
+      tabBarExtraContent={props.location.pathname.replace(`${props.match.path}/`, '')==='resumeList/resumeRecord'?<Button type={'primary'} onClick={()=>history.goBack()}>返回</Button>:null}
     >
       {props.children}
     </PageContainer>
   );
-};
+}
 
 export default Resume;

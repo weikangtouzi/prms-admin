@@ -11,3 +11,15 @@ export type resumeType = {
   status: number
 };
 
+export type resumeRecordType = {
+  recordId: string,
+  userName: string,
+  companyName: string,
+  queryTime: string,
+  inviteTime: string,
+  interviewTime: string,
+  markTime: string,
+  starTime: string,
+  type: number
+}
+

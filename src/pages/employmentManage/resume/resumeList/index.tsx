@@ -1,30 +1,20 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { useRef, useState } from 'react';
-import { Button, Popconfirm } from 'antd';
+import { useRef } from 'react';
+import {  Popconfirm } from 'antd';
+import ResumeRecord from '@/pages/employmentManage/resume/resumeList/ResumeRecord';
 import type { resumeType } from './data';
 import { resumeList } from './service';
-import AdminModal from './AdminModal';
-import { PlusOutlined } from '@ant-design/icons';
 import FormCascade from '@/components/common/formCascade';
 import FormSlider from '@/components/common/formSlider';
+import {useLocation,history} from 'umi'
 
 const ResumeList = () => {
+  const  {pathname} = useLocation()
+  console.log(pathname);
   const actionRef = useRef<ActionType>();
-  const [visible, setVisible] = useState<boolean>(false);
-  const [current, setCurrent] = useState<Partial<resumeType> | undefined>(undefined);
 
-  // 展示弹框
-  const showEditModal = (item: resumeType|undefined) => {
-    setVisible(true);
-    setCurrent(item);
-  };
 
-  // 关闭弹窗
-  const onCancel = () => {
-    setVisible(false);
-    setCurrent({});
-  };
 
   const columns: ProColumns<resumeType>[] = [
     {
@@ -124,7 +114,7 @@ const ResumeList = () => {
       render: (_, record) => {
         return (
           [
-            <a type={'link'} onClick={() => showEditModal( record)} key='info'>预览</a>,
+            <a type={'link'} onClick={() => window.open('http://www.baidu.com') } key='info'>预览</a>,
 
             <Popconfirm
               key='action'
@@ -147,58 +137,54 @@ const ResumeList = () => {
               title={`确认要删除这份简历吗`}
             >
             <a type={'link'} style={{color:'#ff4d4f'}}>删除</a>
-            </Popconfirm>
+            </Popconfirm>,
+            <a key={'record'} onClick={()=>history.push('/employmentManage/resume/resumeList/resumeRecord')}>记录</a>
           ]
         );
-      },
-    },
+      }
+    }
   ];
 
 
   return (
     <>
-    <ProTable<resumeType>
-      headerTitle="简历列表"
-      actionRef={actionRef}
-      rowKey="resumeId"
-      options={false}
-      search={{
-        labelWidth: 120,
-      }}
-      toolBarRender={() => [
-        <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
-          添加
-        </Button>,
-      ]}
-      request={async (
-        // 第一个参数 params 查询表单和 params 参数的结合
-        // 第一个参数中一定会有 pageSize 和  current ，这两个参数是 antd 的规范
-        params,
-      ) => {
-        // 这里需要返回一个 Promise,在返回之前你可以进行数据转化
-        // 如果需要转化参数可以在这里进行修改
-        const msg = await resumeList({
-          current: params.current,
-          pageSize: params.pageSize,
-          ...params
-        });
-        return {
-          data: msg.data,
-          // success 请返回 true，
-          // 不然 table 会停止解析数据，即使有数据
-          success: true,
-          // 不传会使用 data 的长度，如果是分页一定要传
-          total: msg.total,
-        };
-      }}
-      columns={columns}
-    />
-      <AdminModal
-        visible={visible}
-        current={current}
-        onCancel={onCancel}
-        onSubmit={()=>{}}
-      />
+        <ProTable<resumeType>
+          headerTitle="简历列表"
+          actionRef={actionRef}
+          rowKey="resumeId"
+          style={{display:pathname==='/employmentManage/resume/resumeList/resumeRecord'?'none':'block'}}
+          options={false}
+          search={{
+            labelWidth: 120,
+          }}
+          toolBarRender={() => []}
+          request={async (
+            // 第一个参数 params 查询表单和 params 参数的结合
+            // 第一个参数中一定会有 pageSize 和  current ，这两个参数是 antd 的规范
+            params,
+          ) => {
+            // 这里需要返回一个 Promise,在返回之前你可以进行数据转化
+            // 如果需要转化参数可以在这里进行修改
+            const msg = await resumeList({
+              current: params.current,
+              pageSize: params.pageSize,
+              ...params
+            });
+            return {
+              data: msg.data,
+              // success 请返回 true，
+              // 不然 table 会停止解析数据，即使有数据
+              success: true,
+              // 不传会使用 data 的长度，如果是分页一定要传
+              total: msg.total,
+            };
+          }}
+          columns={columns}
+        />
+      {
+        pathname === '/employmentManage/resume/resumeList/resumeRecord' &&
+        <ResumeRecord/>
+      }
     </>
   );
 };

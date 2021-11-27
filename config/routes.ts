@@ -170,6 +170,14 @@
             hideInMenu: true,
             path: '/employmentManage/resume/resumeList',
             component: './employmentManage/resume/resumeList',
+            routes:[
+              {
+                name: 'resumeRecord',
+                hideInMenu: true,
+                path: '/employmentManage/resume/resumeList/resumeRecord',
+                component: './employmentManage/resume/resumeList',
+              }
+            ]
           },
           {
             name: 'resumeSetting',

@@ -18,7 +18,7 @@ const ResumeList = () => {
 
   const columns: ProColumns<titleType>[] = [
     {
-      title: '职位Id',
+      title: '职位ID',
       dataIndex: 'titleId',
     },
     {
@@ -28,32 +28,64 @@ const ResumeList = () => {
     {
       title: '类型',
       dataIndex: 'titleType',
+      valueEnum: {
+        0: {
+          text: '全部',
+          status: 'Default',
+        },
+        1: {
+          text: '产品',
+        },
+        2: {
+          text: '技术',
+        },
+      },
     },
+
     {
-      title:'期望岗位',
-      dataIndex: 'expectTitle',
-      hideInSearch:true
-    },
-    {
-      title:'期望薪资',
-      dataIndex: 'expectSalary',
-      formItemProps:{style:{marginBottom:0}},
-      render: (_, r) => `${r.expectSalary[0]}k~${r.expectSalary[1]}k`,
+      title: '地区',
+      dataIndex: 'region',
+      render: (_, r) => r.region,
       renderFormItem: () => {
-        return <FormSlider/>;
+        return <FormCascade />;
       },
     },
     {
-      title:'简历完善度',
-      dataIndex: 'userName',
-      hideInTable:true
+      title: '学历要求',
+      dataIndex: 'grade',
+      valueEnum: {
+        0: {
+          text: '全部',
+          status: 'Default',
+        },
+        1: {
+          text: '高中',
+        },
+        2: {
+          text: '本科',
+        },
+        3: {
+          text: '硕士',
+        },
+      },
     },
     {
-      title:'期望城市',
-      dataIndex: 'expectCity',
-      render: (_, r) => r.expectCity,
-      renderFormItem: () => {
-        return <FormCascade />;
+      title: '经验要求',
+      dataIndex: 'experience',
+      valueEnum: {
+        0: {
+          text: '全部',
+          status: 'Default',
+        },
+        1: {
+          text: '1-3年',
+        },
+        2: {
+          text: '3-5年',
+        },
+        3: {
+          text: '5年以上',
+        },
       },
     },
     {
@@ -67,28 +99,21 @@ const ResumeList = () => {
           status: 'Default',
         },
         1: {
-          text: '正常',
+          text: '招聘中',
           status: 'Processing',
         },
         2: {
-          text: '锁定',
+          text: '已下线',
           status: 'Error',
         },
       },
 
     },
-
     {
-      title: '更新时间',
-      dataIndex: 'lastLoginTime',
+      title: '上线时间',
+      dataIndex: 'upTime',
       valueType: 'dateRange',
-      render: (_, r) => r.updateTime,
-    },
-    {
-      title: '发布时间',
-      dataIndex: 'publishTime',
-      valueType: 'dateRange',
-      render: (_, r) => r.publishTime,
+      render: (_, r) => r.upTime,
     },
     {
       title: '增值服务',
@@ -180,6 +205,8 @@ const ResumeList = () => {
           };
         }}
         columns={columns}
+
+
       />
       {
         pathname === '/employmentManage/resume/resumeList/resumeRecord' &&

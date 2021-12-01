@@ -6,7 +6,7 @@ export type resumeType = {
   expectCity: string;
   updateTime: string;
   publishTime: string;
-  vas: string[],
+  vas: string[], //增值服务
   expectTitle: string,
   status: number
 };

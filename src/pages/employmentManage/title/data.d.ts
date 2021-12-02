@@ -12,3 +12,14 @@ export type titleType = {
   status: number
 };
 
+export type titleRecordType = {
+  recordId: string,
+  userName: string,
+  lastJob: string,
+  queryTime: string,
+  actionTime: string,
+  postTime: string,
+  resumeName:string
+  type: number
+}
+

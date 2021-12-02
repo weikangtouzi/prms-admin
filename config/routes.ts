@@ -191,6 +191,14 @@
         name: 'title',
         path: '/employmentManage/title',
         component: './employmentManage/title',
+        routes:[
+          {
+            name: 'titleRecord',
+            hideInMenu: true,
+            path: '/employmentManage/title/titleRecord',
+            component: './employmentManage/title/TitleRecord',
+          }
+        ]
       },
       {
         name: 'jobFair',

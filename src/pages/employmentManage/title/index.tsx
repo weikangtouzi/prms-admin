@@ -2,11 +2,10 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { useRef } from 'react';
 import {  Popconfirm } from 'antd';
-import ResumeRecord from '@/pages/employmentManage/resume/resumeList/ResumeRecord';
+import TitleRecord from '@/pages/employmentManage/title/TitleRecord';
 import type { titleType } from './data';
 import { resumeList } from './service';
 import FormCascade from '@/components/common/formCascade';
-import FormSlider from '@/components/common/formSlider';
 import {useLocation,history} from 'umi'
 
 const ResumeList = () => {
@@ -139,31 +138,27 @@ const ResumeList = () => {
       render: (_, record) => {
         return (
           [
-            <a type={'link'} onClick={() => window.open('http://www.baidu.com') } key='info'>预览</a>,
+            <a type={'link'} onClick={() => window.open('http://www.baidu.com') } key='info'>查看</a>,
 
-            <Popconfirm
+           record.status===1 && <Popconfirm
               key='action'
               onConfirm={() => {}}
               onCancel={() => {}}
-              title={`确认要${record.status === 2 ? '恢复' : '锁定'}这份简历吗`}
+              title={`确认要下线这个职位吗`}
             >
-              {record.status === 2 ? (
-                <a type={'link'} key='recover'>恢复</a>
-              ) : (
-                <a type={'link'} style={{color:'red'}} key={'ban'}>
-                  锁定
-                </a>
-              )}
+              <a type={'link'} style={{color:'red'}} key={'ban'}>
+                下线
+              </a>
             </Popconfirm>,
             <Popconfirm
               key='del'
               onConfirm={() => {}}
               onCancel={() => {}}
-              title={`确认要删除这份简历吗`}
+              title={`确认要删除这个职位吗`}
             >
               <a type={'link'} style={{color:'#ff4d4f'}}>删除</a>
             </Popconfirm>,
-            <a key={'record'} onClick={()=>history.push('/employmentManage/resume/resumeList/resumeRecord')}>记录</a>
+            <a key={'record'} onClick={()=>history.push('/employmentManage/title/titleRecord')}>记录</a>
           ]
         );
       }
@@ -173,19 +168,17 @@ const ResumeList = () => {
 
   return (
     <>
-      <ProTable<resumeType>
+      <ProTable<titleType>
         headerTitle="简历列表"
         actionRef={actionRef}
-        rowKey="resumeId"
-        style={{display:pathname==='/employmentManage/resume/resumeList/resumeRecord'?'none':'block'}}
+        rowKey="titleId"
+        style={{display:pathname==='/employmentManage/title/titleRecord'?'none':'block'}}
         options={false}
         search={{
           labelWidth: 120,
         }}
         toolBarRender={() => []}
         request={async (
-          // 第一个参数 params 查询表单和 params 参数的结合
-          // 第一个参数中一定会有 pageSize 和  current ，这两个参数是 antd 的规范
           params,
         ) => {
           // 这里需要返回一个 Promise,在返回之前你可以进行数据转化
@@ -205,12 +198,10 @@ const ResumeList = () => {
           };
         }}
         columns={columns}
-
-
       />
       {
-        pathname === '/employmentManage/resume/resumeList/resumeRecord' &&
-        <ResumeRecord/>
+        pathname === '/employmentManage/title/titleRecord' &&
+        <TitleRecord/>
       }
     </>
   );

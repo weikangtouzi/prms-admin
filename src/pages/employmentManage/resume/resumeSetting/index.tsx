@@ -1,4 +1,4 @@
-import ProForm, { ProFormDigit, ProFormSwitch, ProFormText } from '@ant-design/pro-form';
+import ProForm, { ProFormSwitch } from '@ant-design/pro-form';
 import CheckAll from '@/components/common/checkAll';
 import { Card, Col, Form, InputNumber, Row, Space } from 'antd';
 

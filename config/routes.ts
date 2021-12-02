@@ -204,6 +204,20 @@
         name: 'jobFair',
         path: '/employmentManage/jobFair',
         component: './employmentManage/jobFair',
+        routes: [
+          {
+            name: 'offline',
+            hideInMenu: true,
+            path: '/employmentManage/jobFair',
+            redirect: '/employmentManage/jobFair/offline',
+          },
+          {
+            name: 'offline',
+            hideInMenu: true,
+            path: '/employmentManage/jobFair/offline',
+            component: './employmentManage/jobFair/offline',
+          }
+        ]
       },
     ],
   },

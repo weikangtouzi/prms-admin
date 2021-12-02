@@ -26,7 +26,9 @@ export default {
   'menu.employmentManage.resume.resumeList.resumeRecord': '简历记录',
   'menu.employmentManage.resume.resumeSetting': '简历设置',
   'menu.employmentManage.title': '职位管理',
+  'menu.employmentManage.title.titleRecord': '职位记录',
   'menu.employmentManage.jobFair': '招聘会管理',
+  'menu.employmentManage.jobFair.offline': '线下招聘',
   // 内容管理
   'menu.contentManage': '内容管理',
   'menu.contentManage.news': '资讯管理',

@@ -1,12 +1,28 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { useRef } from 'react';
-import {  Popconfirm } from 'antd';
+import { useRef, useState } from 'react';
+import { Button, Popconfirm } from 'antd';
 import type { JobFairType } from './data';
 import { offlineJobFairList } from './service';
+import FairEdit from './FairEdit';
+import { PlusOutlined } from '@ant-design/icons';
 
 const JobFairList = () => {
   const actionRef = useRef<ActionType>();
+  const [visible, setVisible] = useState<boolean>(false);
+  const [current, setCurrent] = useState<Partial<JobFairType> | undefined>(undefined);
+
+  // 关闭弹窗
+  const onCancel = () => {
+    setVisible(false);
+    setCurrent({});
+  };
+
+  // 展示弹框
+  const showEditModal = (item: JobFairType|undefined) => {
+    setVisible(true);
+    setCurrent(item);
+  };
 
   const columns: ProColumns<JobFairType>[] = [
     {
@@ -22,36 +38,30 @@ const JobFairList = () => {
       dataIndex: 'sponsor',
     },
     {
-      title:'举办时间',
-      dataIndex: 'startTime',
-      hideInSearch:true,
-      render: (_,record)=>`${record.startDate}~${record.endDate}`
-    },
-    {
-      title:'举办时间',
-      dataIndex: 'startTime',
-      valueType:'dateRange',
-      hideInTable:true,
+      title: '举办时间',
+      dataIndex: 'holdTime',
+      valueType: 'dateRange',
+      render: (_, record) => `${record.holdTime[0]}~${record.holdTime[1]}`,
     },
     {
       title: '报名企业',
       dataIndex: 'joinCompanyNum',
-      hideInSearch:true
+      hideInSearch: true,
     },
     {
       title: '招聘岗位',
       dataIndex: 'jobNum',
-      hideInSearch:true
+      hideInSearch: true,
     },
     {
       title: '求职者',
       dataIndex: 'jobHunterNum',
-      hideInSearch:true
+      hideInSearch: true,
     },
     {
       title: '发布人',
       dataIndex: 'publishUser',
-      hideInSearch:true
+      hideInSearch: true,
     },
     {
       title: '发布时间',
@@ -85,47 +95,55 @@ const JobFairList = () => {
       render: (_, record) => {
         return (
           [
-
+            <a type={'link'} onClick={() => showEditModal( record)} key='info'>编辑</a>,
             <Popconfirm
               key='action'
-              onConfirm={() => {}}
-              onCancel={() => {}}
+              onConfirm={() => {
+              }}
+              onCancel={() => {
+              }}
               title={`确认要${record.status === 2 ? '发布' : '下架'}这个招聘会吗`}
             >
               {record.status === 2 ? (
                 <a type={'link'} key='recover'>发布</a>
               ) : (
-                <a type={'link'} style={{color:'red'}} key={'ban'}>
+                <a type={'link'} style={{ color: 'red' }} key={'ban'}>
                   下架
                 </a>
               )}
             </Popconfirm>,
             <Popconfirm
               key='del'
-              onConfirm={() => {}}
-              onCancel={() => {}}
+              onConfirm={() => {
+              }}
+              onCancel={() => {
+              }}
               title={`确认要删除这个招聘会吗`}
             >
-              <a type={'link'} style={{color:'#ff4d4f'}}>删除</a>
+              <a type={'link'} style={{ color: '#ff4d4f' }}>删除</a>
             </Popconfirm>,
           ]
         );
-      }
-    }
+      },
+    },
   ];
 
 
   return (
     <>
       <ProTable<JobFairType>
-        headerTitle="简历列表"
+        headerTitle='简历列表'
         actionRef={actionRef}
-        rowKey="resumeId"
+        rowKey='id'
         options={false}
         search={{
           labelWidth: 120,
         }}
-        toolBarRender={() => []}
+        toolBarRender={() => [
+          <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
+            添加
+          </Button>,
+        ]}
         request={async (
           // 第一个参数 params 查询表单和 params 参数的结合
           // 第一个参数中一定会有 pageSize 和  current ，这两个参数是 antd 的规范
@@ -136,7 +154,7 @@ const JobFairList = () => {
           const msg = await offlineJobFairList({
             current: params.current,
             pageSize: params.pageSize,
-            ...params
+            ...params,
           });
           return {
             data: msg.data,
@@ -148,6 +166,13 @@ const JobFairList = () => {
           };
         }}
         columns={columns}
+      />
+      <FairEdit
+        visible={visible}
+        current={current}
+        onCancel={onCancel}
+        onSubmit={() => {
+        }}
       />
     </>
   );

@@ -11,7 +11,7 @@ const FormRichEdit: React.FC<{
   value?: string[] | string;
   onChange?: (value: string[]) => void;
 }> = ({ value, onChange }) => {
-  const [text, setText] = useState(BraftEditor.createEditorState('<p>hello world</p>'));
+  const [text, setText] = useState(BraftEditor.createEditorState(value||'<p></p>'));
 
   const handleChange = (e: any) => {
     console.log(e.toHTML());

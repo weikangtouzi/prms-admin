@@ -2,18 +2,18 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { useRef, useState } from 'react';
 import { Button, Popconfirm } from 'antd';
-import type {AnnouncementType} from '@/pages/contentManage/announcement/data';
-import { announcementList } from '@/pages/contentManage/announcement/service';
+import type {NewsDetailType} from '@/pages/contentManage/news/list/data';
+import { newsList } from '@/pages/contentManage/news/list/service';
 import { PlusOutlined } from '@ant-design/icons';
-import AnnouncementEdit from './AnnouncementEdit';
+import NewsEditModal from '@/pages/contentManage/news/list/newsEdit';
 
-const AnnouncementList = () => {
+const NewsList = () => {
   const actionRef = useRef<ActionType>();
   const [visible, setVisible] = useState<boolean>(false);
-  const [current, setCurrent] = useState<Partial<AnnouncementType> | undefined>(undefined);
+  const [current, setCurrent] = useState<Partial<NewsDetailType> | undefined>(undefined);
 
   // 展示弹框
-  const showEditModal = (item: AnnouncementType|undefined) => {
+  const showEditModal = (item: NewsDetailType|undefined) => {
     setVisible(true);
     setCurrent(item);
   };
@@ -23,19 +23,35 @@ const AnnouncementList = () => {
     setVisible(false);
     setCurrent({});
   };
-  const columns: ProColumns<AnnouncementType>[] = [
+  const columns: ProColumns<NewsDetailType>[] = [
     {
-      title: '公告ID',
+      title: '资讯ID',
       dataIndex: 'id',
     },
     {
-      title: '公告标题',
+      title: '资讯标题',
       dataIndex: 'title',
     },
     {
-      title: '公告副标题',
+      title: '资讯副标题',
       dataIndex: 'subTitle',
       ellipsis:true
+    },
+    {
+      title: '资讯分类',
+      dataIndex: 'classify',
+      valueEnum: {
+        0: {
+          text: '全部',
+          status: 'Default',
+        },
+        1: {
+          text: '行业资讯',
+        },
+        2: {
+          text: '新闻资讯',
+        },
+      },
     },
     {
       title: '发布人',
@@ -85,7 +101,7 @@ const AnnouncementList = () => {
               }}
               onCancel={() => {
               }}
-              title={`确认要${record.status === 2 ? '发布' : '下架'}这个公告吗`}
+              title={`确认要${record.status === 2 ? '发布' : '下架'}这个资讯吗`}
             >
               {record.status === 2 ? (
                 <a type={'link'} key='recover'>发布</a>
@@ -101,7 +117,7 @@ const AnnouncementList = () => {
               }}
               onCancel={() => {
               }}
-              title={`确认要删除这个公告吗`}
+              title={`确认要删除这个资讯吗`}
             >
               <a type={'link'} style={{ color: '#ff4d4f' }}>删除</a>
             </Popconfirm>,
@@ -114,35 +130,35 @@ const AnnouncementList = () => {
 
   return (
     <>
-      <ProTable<AnnouncementType>
-        headerTitle="公告列表"
-        actionRef={actionRef}
-        rowKey="id"
-        options={false}
-        search={{
-          labelWidth: 120,
-        }}
-        toolBarRender={() => [
-          <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
-            添加资讯
-          </Button>,
-        ]}
-        request={async (
-          params,
-        ) => {
-          const msg = await announcementList({
-            current: params.current,
-            pageSize: params.pageSize,
-          });
-          return {
-            data: msg.data,
-            success: true,
-            total: msg.total,
-          };
-        }}
-        columns={columns}
-      />
-      <AnnouncementEdit
+    <ProTable<NewsDetailType>
+      headerTitle="资讯列表"
+      actionRef={actionRef}
+      rowKey="id"
+      options={false}
+      search={{
+        labelWidth: 120,
+      }}
+      toolBarRender={() => [
+        <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
+          添加资讯
+        </Button>,
+      ]}
+      request={async (
+        params,
+      ) => {
+        const msg = await newsList({
+          current: params.current,
+          pageSize: params.pageSize,
+        });
+        return {
+          data: msg.data,
+          success: true,
+          total: msg.total,
+        };
+      }}
+      columns={columns}
+    />
+      <NewsEditModal
         visible={visible}
         current={current}
         onCancel={onCancel}
@@ -153,4 +169,4 @@ const AnnouncementList = () => {
   );
 };
 
-export default AnnouncementList;
+export default NewsList;

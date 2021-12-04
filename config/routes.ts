@@ -234,6 +234,26 @@
         name: 'news',
         path: '/contentManage/news',
         component: './contentManage/news',
+        routes:[
+          {
+            name: 'list',
+            hideInMenu: true,
+            path: '/contentManage/news',
+            redirect: '/contentManage/news/list',
+          },
+          {
+            name: 'list',
+            hideInMenu: true,
+            path: '/contentManage/news/list',
+            component: './contentManage/news/list',
+          },
+          {
+            name: 'classify',
+            hideInMenu: true,
+            path: '/contentManage/news/classify',
+            component: './contentManage/news/classify',
+          }
+        ]
       },
       {
         name: 'announcement',

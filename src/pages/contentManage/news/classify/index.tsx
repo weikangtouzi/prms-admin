@@ -2,18 +2,18 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { useRef, useState } from 'react';
 import { Button, Popconfirm } from 'antd';
-import type {AnnouncementType} from '@/pages/contentManage/announcement/data';
-import { announcementList } from '@/pages/contentManage/announcement/service';
 import { PlusOutlined } from '@ant-design/icons';
-import AnnouncementEdit from './AnnouncementEdit';
+import type { classifyType } from '@/pages/contentManage/news/classify/data';
+import { classifyList } from '@/pages/contentManage/news/classify/service';
+import ClassifyEditModal from '@/pages/contentManage/news/classify/classifyEdit';
 
-const AnnouncementList = () => {
+const ClassifyList = () => {
   const actionRef = useRef<ActionType>();
   const [visible, setVisible] = useState<boolean>(false);
-  const [current, setCurrent] = useState<Partial<AnnouncementType> | undefined>(undefined);
+  const [current, setCurrent] = useState<Partial<classifyType> | undefined>(undefined);
 
   // 展示弹框
-  const showEditModal = (item: AnnouncementType|undefined) => {
+  const showEditModal = (item: classifyType|undefined) => {
     setVisible(true);
     setCurrent(item);
   };
@@ -23,19 +23,19 @@ const AnnouncementList = () => {
     setVisible(false);
     setCurrent({});
   };
-  const columns: ProColumns<AnnouncementType>[] = [
+  const columns: ProColumns<classifyType>[] = [
     {
-      title: '公告ID',
+      title: '分类ID',
       dataIndex: 'id',
     },
     {
-      title: '公告标题',
-      dataIndex: 'title',
+      title: '分类名称',
+      dataIndex: 'name',
     },
     {
-      title: '公告副标题',
-      dataIndex: 'subTitle',
-      ellipsis:true
+      title: '关联文章数',
+      dataIndex: 'contactArticle',
+      hideInSearch:true
     },
     {
       title: '发布人',
@@ -85,7 +85,7 @@ const AnnouncementList = () => {
               }}
               onCancel={() => {
               }}
-              title={`确认要${record.status === 2 ? '发布' : '下架'}这个公告吗`}
+              title={<div>确认要{record.status === 2 ? '发布' : '下架'}这个分类吗</div>}
             >
               {record.status === 2 ? (
                 <a type={'link'} key='recover'>发布</a>
@@ -101,7 +101,7 @@ const AnnouncementList = () => {
               }}
               onCancel={() => {
               }}
-              title={`确认要删除这个公告吗`}
+              title={`确认要删除这个分类吗`}
             >
               <a type={'link'} style={{ color: '#ff4d4f' }}>删除</a>
             </Popconfirm>,
@@ -114,8 +114,8 @@ const AnnouncementList = () => {
 
   return (
     <>
-      <ProTable<AnnouncementType>
-        headerTitle="公告列表"
+      <ProTable<classifyType>
+        headerTitle="资讯分类列表"
         actionRef={actionRef}
         rowKey="id"
         options={false}
@@ -124,13 +124,13 @@ const AnnouncementList = () => {
         }}
         toolBarRender={() => [
           <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
-            添加资讯
+            添加分类
           </Button>,
         ]}
         request={async (
           params,
         ) => {
-          const msg = await announcementList({
+          const msg = await classifyList({
             current: params.current,
             pageSize: params.pageSize,
           });
@@ -142,7 +142,7 @@ const AnnouncementList = () => {
         }}
         columns={columns}
       />
-      <AnnouncementEdit
+      <ClassifyEditModal
         visible={visible}
         current={current}
         onCancel={onCancel}
@@ -153,4 +153,4 @@ const AnnouncementList = () => {
   );
 };
 
-export default AnnouncementList;
+export default ClassifyList;

@@ -32,6 +32,8 @@ export default {
   // 内容管理
   'menu.contentManage': '内容管理',
   'menu.contentManage.news': '资讯管理',
+  'menu.contentManage.news.list': '资讯列表',
+  'menu.contentManage.news.classify': '资讯分类',
   'menu.contentManage.announcement': '公告管理',
   'menu.contentManage.sensitiveWord': '敏感词管理',
   // 运营管理

@@ -280,21 +280,53 @@
         name: 'finance',
         path: '/operationManage/finance',
         component: './operationManage/finance',
+        routes: [
+          {
+            name: 'early',
+            hideInMenu: true,
+            path: '/operationManage/finance',
+            redirect: '/operationManage/finance/early',
+          },
+          {
+            name: 'early',
+            hideInMenu: true,
+            path: '/operationManage/finance/early',
+            component: './operationManage/finance/early',
+          },
+          {
+            name: 'seeker',
+            hideInMenu: true,
+            path: '/operationManage/finance/seeker',
+            component: './operationManage/finance/seeker',
+          },
+          {
+            name: 'company',
+            hideInMenu: true,
+            path: '/operationManage/finance/company',
+            component: './operationManage/finance/company',
+          },
+          {
+            name: 'statistic',
+            hideInMenu: true,
+            path: '/operationManage/finance/statistic',
+            component: './operationManage/finance/statistic',
+          },
+        ]
       },
-      {
-        name: 'withdraw',
-        path: '/operationManage/withdraw',
-        component: './operationManage/withdraw',
-      },
+      // {
+      //   name: 'withdraw',
+      //   path: '/operationManage/withdraw',
+      //   component: './operationManage/withdraw',
+      // },
       {
         name: 'invoice',
         path: '/operationManage/invoice',
         component: './operationManage/invoice',
       },
       {
-        name: 'ad',
-        path: '/operationManage/ad',
-        component: './operationManage/ad',
+        name: 'gg',
+        path: '/operationManage/gg',
+        component: './operationManage/gg',
       },
       {
         name: 'tipOff',
@@ -305,6 +337,26 @@
         name: 'feedbackAndHelp',
         path: '/operationManage/feedbackAndHelp',
         component: './operationManage/feedbackAndHelp',
+        routes: [
+          {
+            name: 'feedback',
+            hideInMenu: true,
+            path: '/operationManage/feedbackAndHelp',
+            redirect: '/operationManage/feedbackAndHelp/feedback',
+          },
+          {
+            name: 'feedback',
+            hideInMenu: true,
+            path: '/operationManage/feedbackAndHelp/feedback',
+            component: './operationManage/feedbackAndHelp/feedback',
+          },
+          {
+            name: 'help',
+            hideInMenu: true,
+            path: '/operationManage/feedbackAndHelp/help',
+            component: './operationManage/feedbackAndHelp/help',
+          }
+        ]
       },
     ],
   },

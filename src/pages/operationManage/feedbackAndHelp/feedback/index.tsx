@@ -2,19 +2,18 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { useRef, useState } from 'react';
 import { Image, Popconfirm } from 'antd';
-import type { ReportType } from '@/pages/operationManage/tipOff/data';
-import { reportList } from '@/pages/operationManage/tipOff/service';
-import ReportAudit from './ReportAudit';
-import ReportReply from './ReportReply';
+import type { FeedBackType } from '@/pages/operationManage/feedbackAndHelp/feedback/data';
+import { feedbackList } from '@/pages/operationManage/feedbackAndHelp/feedback/service';
+import FeedbackReply from './FeedbackReply';
 
 const ReportList = () => {
   const actionRef = useRef<ActionType>();
-  const [visible, setVisible] = useState<string | boolean>(false);
-  const [current, setCurrent] = useState<Partial<ReportType> | undefined>(undefined);
+  const [visible, setVisible] = useState<boolean>(false);
+  const [current, setCurrent] = useState<Partial<FeedBackType> | undefined>(undefined);
 
   // 展示弹框
-  const showEditModal = (type: 'audit' | 'reply', item: ReportType | undefined) => {
-    setVisible(type);
+  const showEditModal = ( item: FeedBackType | undefined) => {
+    setVisible(true);
     setCurrent(item);
   };
 
@@ -23,55 +22,23 @@ const ReportList = () => {
     setVisible(false);
     setCurrent({});
   };
-  const columns: ProColumns<ReportType>[] = [
+  const columns: ProColumns<FeedBackType>[] = [
     {
-      title: '被举报ID',
-      dataIndex: 'reportedAccount',
+      title: '反馈ID',
+      dataIndex: 'id',
     },
     {
-      title: '被举报类型',
-      dataIndex: 'reportedUserType',
-      valueEnum: {
-        0: {
-          text: '全部',
-          status: 'Default',
-        },
-        1: {
-          text: '个人',
-        },
-        2: {
-          text: '公司',
-        },
-      },
-    },
-    {
-      title: '举报者',
+      title: '反馈者',
       dataIndex: 'reporter',
     },
     {
-      title: '举报类型',
-      dataIndex: 'type',
-      valueEnum: {
-        0: {
-          text: '全部',
-          status: 'Default',
-        },
-        1: {
-          text: '职位虚假',
-        },
-        2: {
-          text: '恶意骚扰',
-        },
-      },
-    },
-    {
-      title: '具体情况说明',
+      title: '反馈内容',
       dataIndex: 'detail',
       ellipsis: true,
       hideInSearch: true,
     },
     {
-      title: '图片证明',
+      title: '反馈图片',
       dataIndex: 'detail',
       hideInSearch: true,
       width: 150,
@@ -85,8 +52,8 @@ const ReportList = () => {
     },
 
     {
-      title: '举报时间',
-      dataIndex: 'publishTime',
+      title: '反馈时间',
+      dataIndex: 'reportTime',
       valueType: 'dateRange',
       render: (_, r) => r.reportTime,
     },
@@ -101,12 +68,12 @@ const ReportList = () => {
           status: 'Default',
         },
         1: {
-          text: '已审核',
-          status: 'Processing',
+          text: '已处理',
+          status: 'Success',
         },
         2: {
-          text: '待审核',
-          status: 'Success',
+          text: '待处理',
+          status: 'Processing',
         },
       },
     },
@@ -117,15 +84,14 @@ const ReportList = () => {
       render: (_, record) => {
         return (
           [
-            <a type={'link'} onClick={() => showEditModal('audit',record)} key='info'>审核</a>,
-            <a type={'link'} onClick={() => showEditModal('reply',record)} key='info'>回复</a>,
+            record.status ===2 && <a onClick={()=>showEditModal(record)}>回复</a>,
             <Popconfirm
               key='del'
               onConfirm={() => {
               }}
               onCancel={() => {
               }}
-              title={`确认要删除这个举报吗`}
+              title={`确认要删除这个反馈吗`}
             >
               <a type={'link'} style={{ color: '#ff4d4f' }}>删除</a>
             </Popconfirm>,
@@ -138,8 +104,8 @@ const ReportList = () => {
 
   return (
     <>
-      <ProTable<ReportType>
-        headerTitle='Banner列表'
+      <ProTable<FeedBackType>
+        headerTitle='反馈列表'
         actionRef={actionRef}
         rowKey='id'
         options={false}
@@ -150,7 +116,7 @@ const ReportList = () => {
         request={async (
           params,
         ) => {
-          const msg = await reportList({
+          const msg = await feedbackList({
             current: params.current,
             pageSize: params.pageSize,
           });
@@ -162,15 +128,9 @@ const ReportList = () => {
         }}
         columns={columns}
       />
-      <ReportAudit
-        visible={visible==='audit'}
-        current={current}
-        onCancel={onCancel}
-        onSubmit={() => {
-        }}
-      />
-      <ReportReply
-        visible={visible==='reply'}
+
+      <FeedbackReply
+        visible={visible}
         current={current}
         onCancel={onCancel}
         onSubmit={() => {

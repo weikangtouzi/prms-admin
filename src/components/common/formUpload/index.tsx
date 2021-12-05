@@ -28,8 +28,9 @@ const FormUpload: React.FC<{
       url:v,
     };
   });
+  const init =  value?initValue:[]
   // @ts-ignore
-  const [fileList, setFileList] = useState<UploadFile[]>(initValue);
+  const [fileList, setFileList] = useState<UploadFile[]>(init);
 
 
   const handleChange = (e: any) => {

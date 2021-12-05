@@ -87,6 +87,12 @@ const NewsEditModal: FC<OperationModalProps> = (props) => {
               },
             ]}
           />
+          <Form.Item noStyle shouldUpdate>
+            {(form) => {
+              return form.getFieldValue('type') ==='resend'?
+                <ProFormText  name="originUrl" label="原链接"  rules={[{required:true}]}/>:null
+            }}
+          </Form.Item>
           <ProFormText
             name="author"
             label="作者名称"

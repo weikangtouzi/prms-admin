@@ -373,6 +373,26 @@
         name: 'system',
         path: '/systemConfig/system',
         component: './systemConfig/system',
+        routes: [
+          {
+            name: 'agreement',
+            hideInMenu: true,
+            path: '/systemConfig/system',
+            redirect: '/systemConfig/system/agreement',
+          },
+          {
+            name: 'agreement',
+            hideInMenu: true,
+            path: '/systemConfig/system/agreement',
+            component: './systemConfig/system/agreement',
+          },
+          {
+            name: 'icon',
+            hideInMenu: true,
+            path: '/systemConfig/system/icon',
+            component: './systemConfig/system/icon',
+          }
+        ]
       },
       {
         name: 'register',
@@ -383,6 +403,32 @@
         name: 'consume',
         path: '/systemConfig/consume',
         component: './systemConfig/consume',
+        routes: [
+          {
+            name: 'job',
+            hideInMenu: true,
+            path: '/systemConfig/consume',
+            redirect: '/systemConfig/consume/job',
+          },
+          {
+            name: 'job',
+            hideInMenu: true,
+            path: '/systemConfig/consume/job',
+            component: './systemConfig/consume/job',
+          },
+          {
+            name: 'single',
+            hideInMenu: true,
+            path: '/systemConfig/consume/single',
+            component: './systemConfig/consume/single',
+          },
+          {
+            name: 'suit',
+            hideInMenu: true,
+            path: '/systemConfig/consume/suit',
+            component: './systemConfig/consume/suit',
+          },
+        ]
       },
     ],
   },

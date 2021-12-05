@@ -53,8 +53,13 @@ export default {
   // 系统配置
   'menu.systemConfig': '系统配置',
   'menu.systemConfig.system': '系统设置',
+  'menu.systemConfig.system.agreement': '协议内容',
+  'menu.systemConfig.system.icon': '默认头像',
   'menu.systemConfig.register': '注册设置',
   'menu.systemConfig.consume': '消费设置',
+  'menu.systemConfig.consume.job': '求职消费',
+  'menu.systemConfig.consume.single': '招聘单次消费',
+  'menu.systemConfig.consume.suit': '招聘套餐消费',
   'menu.exception.403': '403',
   'menu.exception.404': '404',
   'menu.exception.500': '500',

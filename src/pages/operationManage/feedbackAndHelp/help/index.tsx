@@ -115,7 +115,7 @@ const HelpList = () => {
         }}
         toolBarRender={() => [
           <Button key="button" icon={<PlusOutlined />} type="primary" onClick={()=>showEditModal(undefined)}>
-            添加资讯
+            添加帮助
           </Button>,
         ]}
         request={async (

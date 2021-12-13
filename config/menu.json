@@ -1,0 +1,256 @@
+[
+  {
+    "title": "工作台",
+    "key": "workspace"
+  },
+  {
+    "title": "用户管理",
+    "key": "userManage",
+    "children": [
+      {
+        "title": "用户列表",
+        "key": "userList",
+        "children": [
+          {
+            "title": "求职用户",
+            "key": "jobHunter"
+          },
+          {
+            "title": "招聘用户",
+            "key": "recruiter"
+          }
+        ]
+      },
+      {
+        "title": "企业列表",
+        "key": "enterpriseList",
+        "children": [
+          {
+            "title": "企业列表",
+            "key": "companyList"
+          },
+          {
+            "title": "企业审核",
+            "key": "companyAudit"
+          }
+        ]
+      },
+      {
+        "title": "角色管理",
+        "key": "role",
+        "children": [
+          {
+            "title": "管理员",
+            "key": "admin"
+          },
+          {
+            "title": "角色权限",
+            "key": "auth"
+          }
+        ]
+      },
+      {
+        "title": "用户日志",
+        "key": "userLog",
+        "children": [
+          {
+            "title": "操作日志",
+            "key": "actionLog"
+          },
+          {
+            "title": "用户注销",
+            "key": "userUnRegister"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "招聘管理",
+    "key": "employmentManage",
+    "children": [
+      {
+        "title": "简历管理",
+        "key": "resume",
+        "children": [
+          {
+            "title": "简历列表",
+            "key": "resumeList",
+            "children": [
+              {
+                "title": "简历记录",
+                "key": "resumeRecord"
+              }
+            ]
+          },
+          {
+            "title": "简历设置",
+            "key": "resumeSetting"
+          }
+        ]
+      },
+      {
+        "title": "职位管理",
+        "key": "title",
+        "children": [
+          {
+            "title": "职位记录",
+            "key": "titleRecord"
+          }
+        ]
+      },
+      {
+        "title": "招聘会管理",
+        "key": "jobFair",
+        "children": [
+          {
+            "title": "线下招聘会",
+            "key": "offline"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "内容管理",
+    "key": "contentManage",
+    "children": [
+      {
+        "title": "资讯管理",
+        "key": "news",
+        "children": [
+          {
+            "title": "资讯列表",
+            "key": "list"
+          },
+          {
+            "title": "资讯分类",
+            "key": "classify"
+          }
+        ]
+      },
+      {
+        "title": "公告管理",
+        "key": "announcement"
+      },
+      {
+        "title": "敏感词管理",
+        "key": "sensitiveWord"
+      }
+    ]
+  },
+  {
+    "title": "运营管理",
+    "key": "operationManage",
+    "children": [
+      {
+        "title": "财务管理",
+        "key": "finance",
+        "children": [
+          {
+            "title": "早点充值",
+            "key": "early"
+          },
+          {
+            "title": "求职者招聘",
+            "key": "seeker"
+          },
+          {
+            "title": "企业订单",
+            "key": "company"
+          },
+          {
+            "title": "数据统计",
+            "key": "statistic"
+          }
+        ]
+      },
+      {
+        "title": "发票管理",
+        "key": "invoice"
+      },
+      {
+        "title": "广告管理",
+        "key": "gg"
+      },
+      {
+        "title": "举报管理",
+        "key": "tipOff"
+      },
+      {
+        "title": "反馈与帮助",
+        "key": "feedbackAndHelp",
+        "children": [
+          {
+            "title": "反馈列表",
+            "key": "feedback"
+          },
+          {
+            "title": "帮助内容",
+            "key": "help"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "系统配置",
+    "key": "systemConfig",
+    "children": [
+      {
+        "title": "系统设置",
+        "key": "system",
+        "children": [
+          {
+            "title": "协议内容",
+            "key": "agreement"
+          },
+          {
+            "title": "默认头像",
+            "key": "icon"
+          }
+        ]
+      },
+      {
+        "title": "注册设置",
+        "key": "register"
+      },
+      {
+        "title": "消费设置",
+        "key": "consume",
+        "children": [
+          {
+            "title": "求职消费",
+            "key": "job"
+          },
+          {
+            "title": "单次招聘消费",
+            "key": "single"
+          },
+          {
+            "title": "招聘套餐消费",
+            "key": "suit"
+          },
+          {
+            "title": "优惠折扣设置",
+            "key": "discount"
+          }
+        ]
+      },
+      {
+        "title": "userLog",
+        "key": "用户日志",
+        "children": [
+          {
+            "title": "操作日志",
+            "key": "actionLog"
+          },
+          {
+            "title": "userUnRegister",
+            "key": "用户注销"
+          }
+        ]
+      }
+    ]
+  }
+]

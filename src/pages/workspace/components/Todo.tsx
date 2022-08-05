@@ -2,8 +2,9 @@ import { Row, Col, Statistic, Card } from 'antd';
 const gridStyle = {
   width: '20%',
 };
+import { history } from 'umi'
 
-const ToDo = ()=>{
+const ToDo = ({ data })=>{
   return <Row style={{marginBottom:'24px'}}>
     <Col span={24}>
       <Card title="待办事项">
@@ -13,7 +14,7 @@ const ToDo = ()=>{
               <img src='/workspace/tip.svg' alt='icon' style={{width:'50px'}}/>
             </Col>
             <Col span={15}>
-              <Statistic title="发票申请" value={112893} />
+              <Statistic title="发票申请" value={0} />
             </Col>
           </Row>
         </Card.Grid>
@@ -27,13 +28,15 @@ const ToDo = ()=>{
             </Col>
           </Row>
         </Card.Grid>
-        <Card.Grid  style={gridStyle}>
+        <Card.Grid  style={gridStyle} onClick={() => {
+        	history.push('/userManage/enterpriseList/companyAudit')
+        }}>
           <Row>
             <Col span={9}>
               <img src='/workspace/check.svg' alt='icon' style={{width:'48px'}}/>
             </Col>
             <Col span={15}>
-              <Statistic title="审核" value={0} />
+              <Statistic title="审核" value={data?.censors ?? 0} />
             </Col>
           </Row>
         </Card.Grid>

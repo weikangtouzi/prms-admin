@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 import PageLoading from '@/components/PageLoading';
 import UserAndData from '@/pages/workspace/components/UserAndData';
@@ -6,17 +6,24 @@ import ToDo from '@/pages/workspace/components/Todo';
 import UserGrow from '@/pages/workspace/components/UserGrow';
 
 const Workspace =()=>{
+	const [data, setData] = useState()
+  useEffect(() => {
+  	HTAPI.AdminGetHomePageDataCollection().then(response => {
+  		setData(response)
+  	})
+  }, [])
+
   return (
     <GridContent>
       <>
         <Suspense fallback={<PageLoading />}>
-          <UserAndData/>
+          <UserAndData data={data} />
         </Suspense>
         <Suspense fallback={null}>
-          <ToDo/>
+          <ToDo data={data} />
         </Suspense>
         <Suspense fallback={null}>
-          <UserGrow/>
+          <UserGrow data={data} />
         </Suspense>
       </>
     </GridContent>

@@ -11,13 +11,13 @@ const CompanyAudit = () => (
       <TabPane tab='全部' key='all'>
         <AllAudit/>
       </TabPane>
-      <TabPane tab='待审核' key='2'>
+      <TabPane tab='待审核' key='2' disabled>
         <UnAudit/>
       </TabPane>
-      <TabPane tab='审核失败' key='3'>
+      <TabPane tab='审核失败' key='3' disabled>
         <FailAudit/>
       </TabPane>
-      <TabPane tab='审核成功' key='4'>
+      <TabPane tab='审核成功' key='4' disabled>
         <SuccessAudit/>
       </TabPane>
     </Tabs>

@@ -6,7 +6,7 @@ import { useState } from 'react';
 type SalesType = 'online' | 'stores';
 
 const { Text } = Typography;
-const data = [
+const chartData = [
   { year: '1991', value: 3 },
   { year: '1992', value: 4 },
   { year: '1993', value: 3.5 },
@@ -17,8 +17,8 @@ const data = [
   { year: '1998', value: 9 },
   { year: '1999', value: 13 },
 ];
-const UserGrow = () => {
-  const [salesType] = useState<SalesType>('online');
+const UserGrow = ({ data }) => {
+  const [salesType, setSalesType] = useState<SalesType>('online');
   return (
     <Card
       className={styles.salesCard}
@@ -30,7 +30,7 @@ const UserGrow = () => {
       extra={
         <div className={styles.salesCardExtra}>
           <div className={styles.salesTypeRadio}>
-            <Radio.Group value={salesType} onChange={() => {}}>
+            <Radio.Group value={salesType} onChange={(e) => setSalesType(e.target.value)}>
               <Radio.Button value="online">本周</Radio.Button>
               <Radio.Button value="stores">本月</Radio.Button>
             </Radio.Group>
@@ -39,13 +39,13 @@ const UserGrow = () => {
       }
     >
       <div>
-        <Text>本月新用户数：2000人，本周新用户数：1000人</Text>
+        <Text>本月新用户数：{data?.newUserCounter?.monthly ?? 0}人，本周新用户数：{data?.newUserCounter?.weekly ?? 0}人</Text>
         <Line
           forceFit
           height={320}
           xField="year"
           yField="value"
-          data={data}
+          data={chartData}
           meta={{
             year: { alias: '年份' },
             value: { alias: '人数' },

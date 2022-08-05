@@ -68,7 +68,7 @@ const RecordTable = (props: RecordTableType) => {
         type
       });
       return {
-        data: msg.data,
+        data: msg.rows,
         // success 请返回 true，
         // 不然 table 会停止解析数据，即使有数据
         success: true,

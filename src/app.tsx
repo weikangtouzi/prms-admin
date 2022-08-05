@@ -9,6 +9,9 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import React from 'react';
 import { RequestConfig } from '@@/plugin-request/request';
 
+import HTGlobalTool from '@/common/global/HTGlobalTool'
+HTGlobalTool
+
 // const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -74,7 +77,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 };
 
 export const request: RequestConfig = {
-  prefix: 'https://www.fastmock.site/mock/2d43048fb2a8f629827d1b516c19d947',
+  // prefix: 'https://www.fastmock.site/mock/2d43048fb2a8f629827d1b516c19d947',
 };
 
 const client = new ApolloClient({

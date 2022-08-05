@@ -10,9 +10,7 @@ import { useIntl, history, FormattedMessage, useModel } from 'umi';
 import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-import {useLazyQuery} from '@apollo/client'
-import type { UserData, UserNameLoginVar } from '@/services/graphql/User';
-import { GET_LOGIN } from '@/services/graphql/User';
+import HTAuthManager from '@/common/auth/common/model/HTAuthManager'
 
 import styles from './index.less';
 
@@ -34,21 +32,6 @@ const Login: React.FC = () => {
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
 
-  useLazyQuery<UserData, UserNameLoginVar>(GET_LOGIN, {
-    variables: {
-      info: {
-        account: '123',
-        password: {
-          isVerifyCode: false,
-          value: '123',
-        },
-      },
-    },
-    onCompleted: (userData) => {
-      console.log(userData.createdAt);
-    },
-  });
-
   const intl = useIntl();
 
   const fetchUserInfo = async () => {
@@ -66,23 +49,20 @@ const Login: React.FC = () => {
       // 登录
       // loadLogin()
       const msg = await login({ ...values, type });
-      if (msg.status === 'ok') {
-        const defaultLoginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
-          defaultMessage: '登录成功！',
-        });
-        message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
-        /** 此方法会跳转到 redirect 参数所在的位置 */
-        if (!history) return;
-        const { query } = history.location;
-        const { redirect } = query as { redirect: string };
-        history.push(redirect || '/');
-        return;
-      }
-      console.log(msg);
-      // 如果失败去设置用户错误信息
-      setUserLoginState(msg);
+      HTAuthManager.updateKeyValueList({ 'userToken': msg.token })
+
+      const defaultLoginSuccessMessage = intl.formatMessage({
+        id: 'pages.login.success',
+        defaultMessage: '登录成功！',
+      });
+      message.success(defaultLoginSuccessMessage);
+      await fetchUserInfo();
+      /** 此方法会跳转到 redirect 参数所在的位置 */
+      if (!history) return;
+      const { query } = history.location;
+      const { redirect } = query as { redirect: string };
+      history.push(redirect || '/');
+
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
@@ -121,6 +101,7 @@ const Login: React.FC = () => {
             />
             <Tabs.TabPane
               key="mobile"
+              disabled
               tab={intl.formatMessage({
                 id: 'pages.login.phoneLogin.tab',
                 defaultMessage: '手机号登录',
@@ -267,7 +248,7 @@ const Login: React.FC = () => {
               />
             </>
           )}
-          <div
+          {/*<div
             style={{
               marginBottom: 24,
             }}
@@ -282,7 +263,7 @@ const Login: React.FC = () => {
             >
               <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
             </a>
-          </div>
+          </div>*/}
         </LoginForm>
       </div>
       <Footer />

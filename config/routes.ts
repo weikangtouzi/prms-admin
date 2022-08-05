@@ -97,6 +97,7 @@
         name: 'role',
         path: '/userManage/role',
         component: './userManage/role',
+        disabled: true,
         routes: [
           {
             name: 'admin',
@@ -122,6 +123,7 @@
         name: 'userLog',
         path: '/userManage/userLog',
         component: './userManage/userLog',
+        disabled: true,
         routes: [
           {
             name: 'actionLog',
@@ -158,6 +160,7 @@
         name: 'resume',
         path: '/employmentManage/resume',
         component: './employmentManage/resume',
+        disabled: true,
         routes: [
           {
             name: 'resumeList',
@@ -204,6 +207,7 @@
         name: 'jobFair',
         path: '/employmentManage/jobFair',
         component: './employmentManage/jobFair',
+        disabled: true,
         routes: [
           {
             name: 'offline',
@@ -225,6 +229,7 @@
     path: '/contentManage',
     name: 'contentManage',
     icon: 'FileSync',
+    disabled: true,
     routes: [
       {
         path: '/contentManage',
@@ -271,6 +276,7 @@
     path: '/operationManage',
     name: 'operationManage',
     icon: 'FundProjectionScreen',
+    disabled: true,
     routes: [
       {
         path: '/operationManage',
@@ -364,6 +370,7 @@
     path: '/systemConfig',
     name: 'systemConfig',
     icon: 'Setting',
+    disabled: true,
     routes: [
       {
         path: '/systemConfig',

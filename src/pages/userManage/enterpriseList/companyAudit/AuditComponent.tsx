@@ -1,10 +1,10 @@
-import { Image, Table } from 'antd';
+import { Image, Table, Popconfirm, message } from 'antd';
 import {useRequest} from 'umi';
 import {companyAuditList} from '@/pages/userManage/enterpriseList/companyAudit/service';
 import type { ColumnsType } from 'antd/lib/table/interface';
 import type { CompanyType } from '@/pages/userManage/enterpriseList/companyList/data';
 import CompanyAuditModal from '@/pages/userManage/enterpriseList/companyAudit/CompanyAuditModal';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 const statusArr = [
   {value:1,label:'待审核',color:'#faad14'},
@@ -19,8 +19,9 @@ const AuditComponent = (props: AuditProps)=>{
   const [done,setDone] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [actionType,setActionType] = useState<string>('info');
-  const {data,loading} = useRequest(companyAuditList,{defaultParams:[{type}]})
   const [current, setCurrent] = useState<Partial<CompanyType> | undefined>(undefined);
+
+  const { data, loading, run } = useRequest(companyAuditList,{ defaultParams:[{type}] })
 
   // 关闭弹窗
   const handleDone = () => {
@@ -37,55 +38,32 @@ const AuditComponent = (props: AuditProps)=>{
   };
   const columns: ColumnsType<CompanyType> = [
     {
-      title: 'Logo',
-      dataIndex: 'logo',
-      render:(_,r)=>{
-        return  <Image
-          width={40}
-          src={r.logo}
-        />
-      }
+      title: '_id',
+      dataIndex: '_id',
     },
     {
-      title: '企业全称',
-      dataIndex: 'companyName',
+      title: '企业名称',
+      dataIndex: 'enterpriseName',
     },
     {
-      title: '账号邮箱',
-      dataIndex: 'adminAccount',
-    },
-    {
-      title: '所在城市',
-      dataIndex: 'city',
-    },
-    {
-      title: '公司类型',
-      dataIndex: 'city',
-    },
-    {
-      title: '申请人职位',
-      dataIndex: 'city',
-    },
-    {
-      title: '注册时间',
-      dataIndex: 'lastLoginTime',
-      render: (_, r) => r.lastLoginTime,
-    },
-    {
-      title: '状态',
-      dataIndex: 'checkStatus',
-      render:(_,r)=>{
-        const item = statusArr.find(i=>i.value===r.checkStatus)
-        return <a style={{color:item?.color}}>{item?.label}</a>
-      }
+      title: '营业执照',
+      dataIndex: 'charter',
+      render: (item) => <Image src={item} style={{ width: 60, height: 60 }} />
     },
     {
       title: '操作',
       dataIndex: 'option',
+      valueType: 'option',
       render: (_, record) => {
-        return record.checkStatus===1?
-          <a style={{color:'#52c41a'}} onClick={() => showAuditModal('audit', record)}>审核</a>
-          :<a onClick={() => showAuditModal('info', record)}>查看</a>;
+        return (
+          [
+          	<a type={'link'} onClick={() => {
+          		showAuditModal('audit', record)
+          	}}>
+	          	操作
+	          </a>
+          ]
+        );
       },
     },
   ];
@@ -96,7 +74,19 @@ const AuditComponent = (props: AuditProps)=>{
       visible={visible}
       current={current}
       onDone={handleDone}
-      onSubmit={(values)=>{console.log(values)}}
+      onSubmit={(values) => {
+      	const failReason = values?.failReason
+      	const isPassed = (failReason?.length ?? 0) <= 0
+      	HTAPI.AdminSetCensoredForAnItem({
+      		_id: current._id,
+      		isPassed: isPassed,
+      		description: isPassed ? failReason : undefined
+      	}).then(response => {
+      		handleDone()
+      		message.success('操作成功')
+      		run()
+      	})
+      }}
       actionType={actionType}
      />
   </div>

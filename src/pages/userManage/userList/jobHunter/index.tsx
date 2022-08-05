@@ -2,7 +2,7 @@ import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import { userList } from '@/pages/userManage/userList/jobHunter/service';
 import { useRef } from 'react';
-import { Button, Popconfirm } from 'antd';
+import { Button, Popconfirm, message } from 'antd';
 import FormCascade from '@/components/common/formCascade';
 import type { UserType } from '@/pages/userManage/userList/jobHunter/data';
 import type { UserFilter } from '@/pages/userManage/userList/jobHunter/data';
@@ -12,68 +12,127 @@ const PersonalUser = () => {
 
   const columns: ProColumns<UserType>[] = [
     {
-      title: '用户姓名/ID',
-      dataIndex: 'keyword',
-      hideInTable: true,
+      title: '用户id',
+      dataIndex: 'id',
+      search: {
+    		transform: (value, key) => {
+    			let valueList = { [key]: parseInt(value) }
+    			return valueList
+    		}
+    	},
     },
+    // {
+    //   title: '搜索关键词',
+    //   dataIndex: 'keyword',
+    //   hideInTable: true,
+    // },
+    // {
+    // 	title: '注册时间',
+    // 	dataIndex: 'registerTime',
+    // 	hideInTable: true,
+    // 	valueType: 'date',
+    // 	search: {
+    // 		transform: (value, key) => {
+    // 			let valueList = { [key]: [value] }
+    // 			return valueList
+    // 		}
+    // 	},
+    // },
+
     {
-      title: '用户ID',
-      dataIndex: 'userId',
+      title: '用户名',
+      dataIndex: 'username',
       hideInSearch: true,
     },
     {
-      title: '用户姓名',
-      dataIndex: 'userName',
+      title: '头像',
+      dataIndex: 'image_url',
       hideInSearch: true,
+      valueType: 'image'
     },
     {
       title: '手机号码',
-      dataIndex: 'phoneNumber',
+      dataIndex: 'phone_number',
+      search: {
+    		transform: (value, key) => {
+    			let valueList = { 'phoneNumber': value }
+    			return valueList
+    		}
+    	},
     },
     {
-      title: '昵称',
-      dataIndex: 'nickName',
+      title: '邮箱',
+      dataIndex: 'email',
       hideInSearch: true,
     },
-
     {
-      title: '身份',
-      dataIndex: 'type',
+    	title: '性别',
+    	dataIndex: 'gender',
+    	hideInSearch: true,
+    	valueEnum: {
+    		true: '男',
+    		false: '女'
+    	}
+    },
+    {
+      title: '生日',
+      dataIndex: 'birth_date',
       hideInSearch: true,
     },
     {
       title: '所在城市',
-      dataIndex: 'city',
-      render: (_, r) => r.city,
-      renderFormItem: () => {
-        return <FormCascade />;
-      },
+      dataIndex: 'current_city',
+      search: {
+    		transform: (value, key) => {
+    			let valueList = { 'currentCity': value }
+    			return valueList
+    		}
+    	},
+      // render: (_, r) => r.city,
+      // renderFormItem: () => {
+      //   return <FormCascade />;
+      // },
     },
     {
-      title: '注册时间',
-      dataIndex: 'registerTime',
-      valueType: 'dateRange',
-      render: (_, r) => r.registerTime,
+      title: '参加工作时间',
+      dataIndex: 'first_time_working',
+      hideInSearch: true
     },
-
     {
-      title: '用户状态',
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: {
-          text: '全部',
-          status: 'Default',
-        },
-        1: {
-          text: '生效中',
-          status: 'Processing',
-        },
-        2: {
-          text: '已禁用',
-          status: 'Error',
-        },
-      },
+    	title: '学历',
+    	dataIndex: 'education',
+    	hideInSearch: true,
+    	valueEnum: {
+    		Doctor: '博士',
+    		Postgraduate: '研究生',
+    		RegularCollege: '本科',
+    		JuniorCollege: '大专',
+    		High: '高中',
+    		Junior: '初中',
+    		Primary: '小学',
+    		LessThanPrime: '小学以下'
+    	}
+    },
+    {
+    	title: '账号状态',
+    	dataIndex: 'disabled',
+    	hideInSearch: true,
+    	valueEnum: {
+    		false: {
+    			text: '已开启',
+    			status: 'Processing',
+    		},
+    		true: {
+    			text: '已禁用',
+    			status: 'Error',
+    		}
+    	},
+    	search: {
+    		transform: (value, key) => {
+    			let valueList = { 'isAvaliable': value != 'true' }
+    			return valueList
+    		}
+    	},
     },
     {
       title: '操作',
@@ -82,17 +141,21 @@ const PersonalUser = () => {
       render: (_, record) => {
         return (
           <Popconfirm
-            onConfirm={() => {}}
+            onConfirm={() => {
+            	const api = HTAPI[record.disabled ? 'AdminEnableUserAccount' : 'AdminDisableUserAccount']
+            	api({
+            		user_id: record.id
+            	}).then(() => {
+            		message.success('操作成功')
+            		actionRef.current.reload()
+            	})
+            }}
             onCancel={() => {}}
-            title={`确认要${record.status === 2 ? '恢复' : '禁用'}这位用户吗`}
+            title={`确认要${record.disabled ? '恢复' : '禁用'}这位用户吗`}
           >
-            {record.status === 2 ? (
-              <Button type={'link'}>恢复</Button>
-            ) : (
-              <Button type={'link'} danger>
-                禁用
-              </Button>
-            )}
+            <a type={'link'} style={ !record.disabled ? { color: 'red' } : null }>
+            	{ record.disabled ? '恢复' : '禁用' }
+            </a>
           </Popconfirm>
         );
       },
@@ -102,7 +165,7 @@ const PersonalUser = () => {
     <ProTable<UserType, UserFilter>
       headerTitle="求职用户列表"
       actionRef={actionRef}
-      rowKey="userId"
+      rowKey="username"
       options={false}
       search={{
         labelWidth: 120,
@@ -115,13 +178,14 @@ const PersonalUser = () => {
       ) => {
         // 这里需要返回一个 Promise,在返回之前你可以进行数据转化
         // 如果需要转化参数可以在这里进行修改
+        const { current, pageSize, ...info } = params
         const msg = await userList({
-          current: params.current,
-          pageSize: params.pageSize,
-          city: params?.city?.length > 1 ? params.city[params.city.length - 1] : undefined,
+          page: current - 1,
+          pageSize,
+          info,
         });
         return {
-          data: msg.data,
+          data: msg.rows,
           // success 请返回 true，
           // 不然 table 会停止解析数据，即使有数据
           success: true,

@@ -7,6 +7,7 @@ import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
 import { outLogin } from '@/services/ant-design-pro/api';
 import type { MenuInfo } from 'rc-menu/lib/interface';
+import SetPassword from './SetPassword'
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -41,6 +42,9 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
         loginOut();
         return;
       }
+      if (key == 'settings') {
+      	return
+      }
       history.push(`/account/${key}`);
     },
     [setInitialState],
@@ -70,16 +74,17 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
 
   const menuHeaderDropdown = (
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-      {menu && (
+      {/*{menu && (
         <Menu.Item key="center">
           <UserOutlined />
           个人中心
         </Menu.Item>
-      )}
+      )}*/}
       {menu && (
         <Menu.Item key="settings">
           <SettingOutlined />
-          个人设置
+          <SetPassword
+          />
         </Menu.Item>
       )}
       {menu && <Menu.Divider />}

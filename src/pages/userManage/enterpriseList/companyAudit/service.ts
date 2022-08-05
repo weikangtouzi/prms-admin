@@ -9,15 +9,16 @@ export async function companyAuditList(params: {
   pageSize?: number;
   type?: string | number;
 }) {
-  return request<{
-    data: CompanyType[];
-    /** 列表的内容总数 */
-    total?: number;
-    success?: boolean;
-  }>('/api/companyAuditList', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-  });
+	return new Promise((resolve, reject) => {
+		HTAPI.AdminGetCensorList({
+			page: (params?.current ?? 1) - 1,
+			pageSize: (params?.pageSize ?? 15),
+		}).then(response => {
+			resolve({
+				data: response?.rows,
+				success: true,
+				total: response?.total
+			})
+		}).catch(reject)
+	})
 }

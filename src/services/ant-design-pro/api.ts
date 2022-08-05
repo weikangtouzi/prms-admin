@@ -1,35 +1,30 @@
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
+import HTAuthManager from '@/common/auth/common/model/HTAuthManager'
 
 /** 获取当前的用户 GET /api/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
-  return request<{
-    data: API.CurrentUser;
-  }>('/api/currentUser', {
-    method: 'GET',
-    ...(options || {}),
-  });
+	if ((HTAuthManager?.syncReadKeyValueList()?.userToken?.length ?? 0) > 0) {
+		return { data: { 
+			name: 'admin',
+			avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png'
+		} }
+	}
+	throw new Error('未登录')
 }
 
 /** 退出登录接口 POST /api/login/outLogin */
 export async function outLogin(options?: { [key: string]: any }) {
-  return request<Record<string, any>>('/api/login/outLogin', {
-    method: 'POST',
-    ...(options || {}),
-  });
+	HTAuthManager.clearLoginInfo()
 }
 
 /** 登录接口 POST /api/login/account */
 export async function login(body: API.LoginParams, options?: { [key: string]: any }) {
-  return request<API.LoginResult>('/api/login/account', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
-  });
+	return HTAPI.AdminLogIn({
+		account: body?.username,
+		password: body?.password,
+	})
 }
 
 /** 此处后端没有提供注释 GET /api/notices */

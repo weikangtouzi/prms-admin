@@ -10,6 +10,7 @@ const tabList = [
   {
     key: 'recruiter',
     tab: '招聘用户',
+    disabled: true,
   },
   {
     key: 'entrepreneur',

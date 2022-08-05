@@ -34,7 +34,7 @@ const OperationModal: FC<CompanyAuditModal> = (props) => {
           <List.Item.Meta
             avatar={<Avatar shape="square" src="/images/user/audit.png" />}
             title='审核企业'
-            description="确认申请的企业名称与营业执照一致"
+            description="审核企业"
           />
         </List.Item>
       }
@@ -61,11 +61,12 @@ const OperationModal: FC<CompanyAuditModal> = (props) => {
             label="企业名称"
             readonly={true}
             placeholder="请输入"
+            initialValue={current.enterpriseName}
           />
           <Form.Item label='营业执照' name='logo'>
             <Image
               width={100}
-              src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+              src={current?.charter}
             />
           </Form.Item>
           <ProFormRadio.Group

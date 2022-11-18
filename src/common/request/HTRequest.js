@@ -32,7 +32,7 @@ export default class HTRequest {
 
 	static request = (url = '', method = 'GET', paramList = {}, optionList = {}) => {
 		return new Promise((resolve, reject) => {
-			let reloadUrl = url.indexOf('http') == -1 ? `http://be.chenzaozhao.com:4000${url}` : url
+			let reloadUrl = url.indexOf('http') == -1 ? `https://be.chenzaozhao.com${url}` : url
 			let isFormData = false
 			if (process.browser) {
 				isFormData = paramList instanceof FormData

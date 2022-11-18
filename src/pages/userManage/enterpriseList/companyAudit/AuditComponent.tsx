@@ -80,7 +80,7 @@ const AuditComponent = (props: AuditProps)=>{
       	HTAPI.AdminSetCensoredForAnItem({
       		_id: current._id,
       		isPassed: isPassed,
-      		description: isPassed ? failReason : undefined
+      		description: isPassed ? undefined : failReason
       	}).then(response => {
       		handleDone()
       		message.success('操作成功')

@@ -65,7 +65,7 @@ const CallbackRecord = () => {
       dataIndex: "gender",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         return item ? "男" : "女";
       },
     },
@@ -90,7 +90,7 @@ const CallbackRecord = () => {
           case "LessThanPrime":
             return "文盲";
           default:
-            return "未知";
+            return "-";
         }
       },
     },
@@ -99,7 +99,7 @@ const CallbackRecord = () => {
       dataIndex: "current_city",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         return item;
       },
     },
@@ -108,7 +108,7 @@ const CallbackRecord = () => {
       dataIndex: "birth_date",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         const now = new Date();
         const birth = new Date(item);
         let age = now.getFullYear() - birth.getFullYear();
@@ -124,7 +124,7 @@ const CallbackRecord = () => {
       dataIndex: "at_work",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         return item ? "是" : "否";
       },
     },
@@ -133,7 +133,7 @@ const CallbackRecord = () => {
       dataIndex: "is_local",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         return item ? "是" : "否";
       },
     },
@@ -142,7 +142,7 @@ const CallbackRecord = () => {
       dataIndex: "is_out_work",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "未知";
+        if (item === "-") return "-";
         return item ? "是" : "否";
       },
     },

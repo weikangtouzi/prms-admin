@@ -227,6 +227,7 @@ const CallbackRecord = () => {
         onSubmit={async (values) => {
           try {
             await HTAPI.AdminAddCallbackRecord(values);
+            return;
           } catch (error) {
             console.log(JSON.stringify(error))
             const translatedError = translateGQLError(error, {

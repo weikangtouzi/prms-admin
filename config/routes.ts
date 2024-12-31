@@ -1,4 +1,6 @@
-﻿export default [
+﻿import component from "@/locales/en-US/component";
+
+export default [
   {
     path: '/user',
     layout: false,
@@ -365,6 +367,39 @@
         ]
       },
     ],
+  },
+  {
+    path: '/callback',
+    name: 'callback',
+    icon: 'phone',
+    disabled: false,
+    routes: [
+      {
+        path: '/callback/callbackRecord',
+        name: 'callbackRecord',
+        component: './callback/callbackRecord',
+        routes: [
+          {
+            name: 'callbackRecordList',
+            path: '/callback/callbackRecord/',
+            hideInMenu: true,
+          },
+          
+        ]
+      },
+      {
+        name: 'callbackRecord_uncalled',
+        path: '/callback/callbackRecord_uncalled',
+        component: './callback/callbackRecord_uncalled',
+        routes: [
+          {
+            name: 'callbackRecord_uncalled',
+            path: '/callback/callbackRecord_uncalled/',
+            hideInMenu: true,
+          },
+        ]
+      }
+    ]
   },
   {
     path: '/systemConfig',

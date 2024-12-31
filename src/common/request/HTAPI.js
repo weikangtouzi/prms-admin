@@ -366,12 +366,83 @@ mutation AdminResetPassword($oldOne: String, $newOne: String) {
 }
 `,
 
-
-
-
-
-
-
+/*
+AdminAddCallbackRecord
+{
+	phone_number: String!,
+	real_name: String!,
+	birth_date: String!,
+	gender: Boolean!,
+	education: String!,
+	at_work: Boolean!,
+	is_local: Boolean!,
+	is_out_work: Boolean!,
+	result_of_last_call: String!,
+	detail_of_last_call: String!,
+}
+*/
+`
+mutation AdminAddCallbackRecord($phone_number: String!, $real_name: String!, $birth_date: String, $gender: Boolean!, $education: String, $at_work: Boolean, $is_local: Boolean, $is_out_work: Boolean, $result_of_last_call: String!, $detail_of_last_call: String!) {
+	AdminAddCallbackRecord(phone_number: $phone_number, real_name: $real_name, birth_date: $birth_date, gender: $gender, education: $education, at_work: $at_work, is_local: $is_local, is_out_work: $is_out_work, result_of_last_call: $result_of_last_call, detail_of_last_call: $detail_of_last_call)
+}
+`,
+/*
+AdminGetCallbackRecordList
+{
+	page: Int,
+	pageSize: Int,
+	real_name: String,
+	phone_number: String,
+}
+*/
+`
+query AdminGetCallBackRecordList($page: Int, $pageSize: Int, $info: CallbackRecordSearch) {
+	AdminGetCallBackRecordList(page: $page, pageSize: $pageSize, info: $info) {
+		total
+		rows {
+			_id
+			phone_number
+			real_name
+			birth_date
+			gender
+			education
+			at_work
+			is_local
+			is_out_work
+			last_time_call
+			result_of_last_call
+			detail_of_last_call
+		}
+	}
+}
+`,
+/*
+AdminGetCallbackRecord_uncalledList
+{
+	page: Int,
+	pageSize: Int,
+	real_name: String,
+	phone_number: String,
+}
+*/
+`
+query AdminGetCallBackRecord_uncalledList($page: Int, $pageSize: Int, $info: CallbackRecordSearch) {
+	AdminGetCallBackRecord_uncalledList(page: $page, pageSize: $pageSize, info: $info) {
+		total
+		rows {
+			_id
+			phone_number
+			real_name
+			birth_date
+			gender
+			education
+			at_work
+			is_local
+			is_out_work
+		}
+	}
+}
+`
 ]
 
 let RELOAD_ITEM_LIST = {}

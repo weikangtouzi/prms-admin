@@ -50,6 +50,9 @@ export default {
   'menu.operationManage.feedbackAndHelp': '反馈与帮助',
   'menu.operationManage.feedbackAndHelp.feedback': '反馈列表',
   'menu.operationManage.feedbackAndHelp.help': '帮助内容',
+  'menu.callback': '电话回访',
+  'menu.callback.callbackRecord': '回访记录',
+  'menu.callback.callbackRecord_uncalled': '待回访列表',
   // 系统配置
   'menu.systemConfig': '系统配置',
   'menu.systemConfig.system': '系统设置',

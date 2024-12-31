@@ -99,7 +99,7 @@ const CallbackRecord = () => {
       dataIndex: "current_city",
       hideInSearch: true,
       render: (item) => {
-        if (item === "-") return "-";
+        if (item === "-") return "鹰潭市余江区";
         return item;
       },
     },
